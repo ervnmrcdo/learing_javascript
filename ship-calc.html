@@ -1,0 +1,45 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHIPPING CALC</title>
+  </head>
+  <body>
+    <p>Amazon Shippin Calculator</p>
+    <p>additional info</p>
+    <input
+      placeholder="Cost of Order"
+      onkeydown="isEnter(event)"
+      class="subtotal"
+    />
+    <button onclick="calculateTotal()">submit</button>
+    <p class="total-with-shipping"></p>
+
+    <script>
+      function isEnter(event) {
+        if (event.key === "Enter") {
+          calculateTotal();
+        }
+      }
+      function returnTotal(subtotal) {
+        if (subtotal < 0) {
+          document.querySelector(".total-with-shipping").innerHTML =
+            `Invalid Value`;
+        } else if (subtotal < 40) {
+          const newTotal = subtotal + 10;
+          console.log(newTotal);
+          document.querySelector(".total-with-shipping").innerHTML =
+            `$${newTotal}`;
+        } else {
+          document.querySelector(".total-with-shipping").innerHTML =
+            `$${subtotal}`;
+        }
+      }
+      function calculateTotal() {
+        const subtotal = document.querySelector(".subtotal");
+        console.log(parseInt(subtotal.value));
+        returnTotal(parseInt(subtotal.value));
+      }
+    </script>
+  </body>
+</html>
