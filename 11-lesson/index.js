@@ -1,5 +1,6 @@
 const taskList1 = [];
 const taskList2 = [];
+const taskList = [];
 
 function addTask() {
   const task = document.querySelector(".js-task-name-1").value;
@@ -23,5 +24,39 @@ function addTask2() {
   for (let i = 0; i < taskList2.length; i++) {
     htmlTask += `<p>${taskList2[i]}</p>`;
   }
+  document.querySelector(".tasks").innerHTML = `${htmlTask}`;
+}
+
+function addTask3() {
+  const taskName = document.querySelector(".js-task-name").value;
+  const taskDate = document.querySelector(".js-due-date").value;
+
+  if (taskName != "" && taskDate != null) {
+    taskList.push({ taskName, taskDate });
+    document.querySelector(".js-task-name").value = "";
+    console.log(taskList);
+  }
+  previewTasks();
+}
+
+function deleteTask(index) {
+  taskList.splice(index, 1);
+  console.log(taskList);
+  previewTasks();
+}
+
+function previewTasks() {
+  let htmlTask = ``;
+
+  for (let i = 0; i < taskList.length; i++) {
+    const { taskName, taskDate } = taskList[i];
+    htmlTask += `
+      <div class="task-${i}">${taskName}</div>
+      <div class="task-${i}">${taskDate}</div>
+      <button  class="delete-button"
+onclick="deleteTask(${i})">Delete</button>
+    `;
+  }
+  console.log(htmlTask);
   document.querySelector(".tasks").innerHTML = `${htmlTask}`;
 }
