@@ -48,15 +48,16 @@ function deleteTask(index) {
 function previewTasks() {
   let htmlTask = ``;
 
-  for (let i = 0; i < taskList.length; i++) {
-    const { taskName, taskDate } = taskList[i];
+  //for (let i = 0; i < taskList.length; i++) {
+  //  const { taskName, taskDate } = taskList[i];
+  taskList.forEach(function (task, index) {
+    const { taskName, taskDate } = task;
     htmlTask += `
-      <div class="task-${i}">${taskName}</div>
-      <div class="task-${i}">${taskDate}</div>
+      <div class="task-${index}">${taskName}</div>
+      <div class="task-${index}">${taskDate}</div>
       <button  class="delete-button"
-onclick="deleteTask(${i})">Delete</button>
+onclick="deleteTask(${index})">Delete</button>
     `;
-  }
-  console.log(htmlTask);
+  });
   document.querySelector(".tasks").innerHTML = `${htmlTask}`;
 }
