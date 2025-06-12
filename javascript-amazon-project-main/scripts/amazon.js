@@ -70,12 +70,11 @@ document.querySelector(".js-products-grid").innerHTML = productsHTML;
 document.querySelectorAll(".add-to-cart-button").forEach((button) => {
   button.addEventListener("click", () => {
     const product = button.dataset;
+    console.log(product);
 
     addToCart(product);
     const cartQuantity = updateCartQuantity();
 
     document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
-
-    console.log(cartQuantity);
   });
 });

@@ -1,6 +1,7 @@
 import { cart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
+import { removeFromCart } from "../data/cart.js";
 
 const generateCart = () => {
   let html;
@@ -26,7 +27,7 @@ const generateCart = () => {
               />
 
               <div class="cart-item-details">
-                <div class="product-name">
+                <div class="${matchingItem.id}">
                 ${matchingItem.name}
                 </div>
                 <div class="product-price">$${formatCurrency(matchingItem.priceCents)}</div>
@@ -35,7 +36,8 @@ const generateCart = () => {
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary
+                  js-delete-link"  data-product-id="${matchingItem.id}">
                     Delete
                   </span>
                 </div>
@@ -90,4 +92,11 @@ const generateCart = () => {
 
 document.querySelector(".js-order-summary").innerHTML = ` ${generateCart()} `;
 
-console.log(generateCart());
+document.querySelectorAll(".js-delete-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    const productId = link.dataset.productId;
+    removeFromCart(productId);
+    document.querySelector(".js-order-summary").innerHTML =
+      ` ${generateCart()} `;
+  });
+});
