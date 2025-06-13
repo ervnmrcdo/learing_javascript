@@ -63,10 +63,13 @@ const updateCartQuantity = () => {
   cart.forEach((item) => {
     cartQuantity += item.quantity;
   });
+  console.log(cartQuantity);
   return cartQuantity;
 };
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
+document.querySelector(".js-cart-quantity").innerHTML = updateCartQuantity();
+
 document.querySelectorAll(".add-to-cart-button").forEach((button) => {
   button.addEventListener("click", () => {
     const product = button.dataset;

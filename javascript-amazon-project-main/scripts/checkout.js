@@ -5,7 +5,6 @@ import { removeFromCart } from "../data/cart.js";
 
 const generateCart = () => {
   let html;
-
   cart.forEach((cartItem) => {
     let matchingItem;
 
