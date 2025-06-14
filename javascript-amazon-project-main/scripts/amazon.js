@@ -75,7 +75,7 @@ document.querySelectorAll(".add-to-cart-button").forEach((button) => {
     const product = button.dataset;
     console.log(product);
 
-    addToCart(product);
+    addToCart(product.productId);
     const cartQuantity = updateCartQuantity();
 
     document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
