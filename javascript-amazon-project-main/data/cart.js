@@ -22,14 +22,11 @@ const saveToStorage = () => {
 
 export const addToCart = (productId) => {
   let matchingItem;
-  console.log(cart);
-  console.log(productId);
   cart.forEach((item) => {
     if (productId === item.id) {
       matchingItem = item;
     }
   });
-  console.log(matchingItem);
   if (matchingItem) {
     matchingItem.quantity += 1;
   } else {
